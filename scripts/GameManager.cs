@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 using gameschallenge1FlappyBird.scripts;
 
 public partial class GameManager : Node {
@@ -19,5 +20,15 @@ public partial class GameManager : Node {
 	
 	public void EndGame() {
 		GameState = GameState.End;
+	}
+
+	public void IncreaseScore() {
+		Label scoreLabel = GetNode<Label>("/root/main/HUD/VBoxContainer/HBoxContainer/Score");
+		Debug.WriteLine(scoreLabel);
+		int score = int.Parse(scoreLabel.Text);
+		score += 1;
+		scoreLabel.Text = score.ToString();
+		
+		Debug.WriteLine("Increased Score: " + score);
 	}
 }

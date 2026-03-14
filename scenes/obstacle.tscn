@@ -37,10 +37,10 @@ texture = SubResource("PlaceholderTexture2D_cjuko")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="lower/Area2D" unique_id=1478616958]
 shape = SubResource("RectangleShape2D_cjuko")
 
-[node name="middle" type="Area2D" parent="." unique_id=1276977803]
+[node name="middle" type="Node2D" parent="." unique_id=1713007021]
 scale = Vector2(100, 100)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="middle" unique_id=1154589225]
-shape = SubResource("RectangleShape2D_7ukg5")
+[node name="Area2D" type="Area2D" parent="middle" unique_id=1276977803]
 
-[connection signal="body_entered" from="middle" to="." method="OnObstacleMiddleBodyEntered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="middle/Area2D" unique_id=1154589225]
+shape = SubResource("RectangleShape2D_7ukg5")

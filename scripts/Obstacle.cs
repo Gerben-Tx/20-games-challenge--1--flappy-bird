@@ -11,13 +11,13 @@ public partial class Obstacle : Node2D {
 
     private Node2D _upper;
     private Node2D _lower;
-    private Area2D _middle;
+    private Node2D _middle;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready() {
         _upper = GetNode<Node2D>("upper");
         _lower = GetNode<Node2D>("lower");
-        _middle = GetNode<Area2D>("middle");
+        _middle = GetNode<Node2D>("middle");
 
         float diff = Math.Abs(UpperY - LowerY);
         // Debug.WriteLine("diff: "+diff);

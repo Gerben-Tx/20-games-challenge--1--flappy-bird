@@ -44,7 +44,7 @@ public partial class ObstacleSpawner : Node {
 	) {
 		Debug.WriteLine("Obstacle entered: "+area2D.Name);
 
-		if (area2D.Name == "middle") {
+		if (area2D.GetParent().Name == "middle") {
 			SpawnObstacle();
 		}
 	}
@@ -54,20 +54,8 @@ public partial class ObstacleSpawner : Node {
 	) {
 		// Debug.WriteLine("Obstacle exited: "+area2D.Name);
 
-		if (area2D.Name == "middle") {
+		if (area2D.GetParent().Name == "middle") {
 			area2D.GetParent().QueueFree();
 		}
-	}
-
-	private void OnObstacleMiddlePlayerEntered(
-		Node2D body
-	) {
-		// Debug.WriteLine("Obstacle entered: "+body.Name);
-		
-		// TODO: This should not be in this namespace...
-		Label scoreLabel = GetNode<Label>("%Score");
-		int score = Int32.Parse(scoreLabel.Text);
-		score += 1;
-		scoreLabel.Text = score.ToString();
 	}
 }

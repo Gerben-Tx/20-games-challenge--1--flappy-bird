@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dqvnrn2hiomi8"]
+
+[ext_resource type="Script" uid="uid://dvf1wtuis2vui" path="res://scripts/Player.cs" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://dq8j1i67ct8t" path="res://textures/flappy_bird.png" id="2_qhqgy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
+radius = 17.0
+height = 50.0
+
+[node name="player" type="Node2D" unique_id=562652933]
+script = ExtResource("1_g2els")
+jumpForce = 10000.0
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1917735809]
+mass = 0.3
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=621240094]
+texture = ExtResource("2_qhqgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=606277033]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_g2els")
+
+[node name="Area2D" type="Area2D" parent="RigidBody2D" unique_id=1192015143]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D" unique_id=1325380361]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_g2els")
+
+[connection signal="area_entered" from="RigidBody2D/Area2D" to="." method="OnAreaEntered"]

@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://b41siwq8i2j6g"]
+
+[ext_resource type="Script" uid="uid://crn7s6eljnovm" path="res://scripts/Obstacle.cs" id="1_7ukg5"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3xr6u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjuko"]
+size = Vector2(1.05, 1.01)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cjuko"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ukg5"]
+size = Vector2(1, 1)
+
+[node name="obstacle" type="Node2D" unique_id=1240120975]
+script = ExtResource("1_7ukg5")
+
+[node name="upper" type="Node2D" parent="." unique_id=100872368]
+scale = Vector2(100, 500)
+
+[node name="Sprite2D" type="Sprite2D" parent="upper" unique_id=1135990930]
+texture = SubResource("PlaceholderTexture2D_3xr6u")
+
+[node name="Area2D" type="Area2D" parent="upper" unique_id=193164089]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="upper/Area2D" unique_id=1953558271]
+shape = SubResource("RectangleShape2D_cjuko")
+
+[node name="lower" type="Node2D" parent="." unique_id=1419330739]
+scale = Vector2(100, 500)
+
+[node name="Sprite2D" type="Sprite2D" parent="lower" unique_id=1661617464]
+texture = SubResource("PlaceholderTexture2D_cjuko")
+
+[node name="Area2D" type="Area2D" parent="lower" unique_id=625617239]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lower/Area2D" unique_id=1478616958]
+shape = SubResource("RectangleShape2D_cjuko")
+
+[node name="middle" type="Area2D" parent="." unique_id=1276977803]
+scale = Vector2(100, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="middle" unique_id=1154589225]
+shape = SubResource("RectangleShape2D_7ukg5")
+
+[connection signal="body_entered" from="middle" to="." method="OnObstacleMiddleBodyEntered"]

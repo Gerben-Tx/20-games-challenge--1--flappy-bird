@@ -23,6 +23,8 @@ public partial class GameManager : Node {
 	}
 
 	public void IncreaseScore() {
+		// TODO: Better replacement for this is letting a HUD script register the Score label to the Game Manager
+		//  Like `GameManager.Instance.RegisterScoreLabel(_scoreLabel);`
 		Label scoreLabel = GetNode<Label>("/root/main/HUD/VBoxContainer/HBoxContainer/Score");
 		Debug.WriteLine(scoreLabel);
 		int score = int.Parse(scoreLabel.Text);

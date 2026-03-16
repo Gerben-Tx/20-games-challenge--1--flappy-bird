@@ -16,10 +16,17 @@ public partial class GameManager : Node {
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (GameState == GameState.End) {
+			if (Input.IsActionJustPressed("Restart")) {
+				GetTree().ReloadCurrentScene();
+				GameState = GameState.Playing;
+			}
+		}
 	}
 	
 	public void EndGame() {
 		GameState = GameState.End;
+		GetNode<Control>("/root/main/END_GAME").Visible = true;
 	}
 
 	public void IncreaseScore() {

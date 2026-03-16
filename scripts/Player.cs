@@ -36,8 +36,9 @@ public partial class Player : Node
 		if (area.GetParent().Name == "upper" || area.GetParent().Name == "lower") {
 			GameManager.Instance.EndGame();
 		} else if (area.GetParent().Name == "middle") {
-			Debug.WriteLine("Should increase score");
 			GameManager.Instance.IncreaseScore();
+		} else if (area.GetParent().Name == "ground") {
+			GameManager.Instance.EndGame();
 		}
 	}
 }

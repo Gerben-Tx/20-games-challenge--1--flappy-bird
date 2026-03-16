@@ -16,7 +16,13 @@ font_size = 25
 size = Vector2(1017, 2542)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
-size = Vector2(1227, 50)
+size = Vector2(1227, 49)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tbgi4"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_tefeu"]
+font_size = 44
 
 [node name="main" type="Node2D" unique_id=673738909]
 
@@ -64,14 +70,16 @@ text = "00"
 position = Vector2(434.5, 357)
 shape = SubResource("RectangleShape2D_sugp2")
 
-[node name="ground" type="StaticBody2D" parent="." unique_id=368269160]
+[node name="ground" type="Node2D" parent="." unique_id=384884633]
 position = Vector2(614, 637)
 
 [node name="Sprite2D" type="Sprite2D" parent="ground" unique_id=243170018]
 texture = ExtResource("1_tbgi4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ground" unique_id=1857434746]
-position = Vector2(-12, 6)
+[node name="Area2D" type="Area2D" parent="ground" unique_id=1696785087]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground/Area2D" unique_id=1857434746]
+position = Vector2(-12, 6.5)
 shape = SubResource("RectangleShape2D_0wfyh")
 
 [node name="obstacle_spawner" type="Node" parent="." unique_id=205504226]
@@ -93,6 +101,73 @@ offset_bottom = 650.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_jyhfs")
+
+[node name="END_GAME" type="Control" parent="." unique_id=1913829113]
+visible = false
+z_index = 99
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Panel" type="Panel" parent="END_GAME" unique_id=1565355045]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 652.0
+
+[node name="Label2" type="Label" parent="END_GAME/Panel" unique_id=999543]
+layout_mode = 0
+offset_left = 468.0
+offset_top = 92.0
+offset_right = 712.0
+offset_bottom = 126.0
+text = "Game over!"
+label_settings = SubResource("LabelSettings_tbgi4")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="END_GAME/Panel" unique_id=975156713]
+z_index = 1
+layout_mode = 0
+offset_left = 468.0
+offset_top = 201.0
+offset_right = 712.0
+offset_bottom = 353.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="END_GAME/Panel/VBoxContainer" unique_id=556343820]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="END_GAME/Panel/VBoxContainer/HBoxContainer" unique_id=1769606984]
+layout_mode = 2
+text = "Score: "
+label_settings = SubResource("LabelSettings_tefeu")
+
+[node name="Score" type="Label" parent="END_GAME/Panel/VBoxContainer/HBoxContainer" unique_id=664015317]
+layout_mode = 2
+text = "00"
+label_settings = SubResource("LabelSettings_tefeu")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="END_GAME/Panel/VBoxContainer" unique_id=251844194]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="END_GAME/Panel/VBoxContainer/HBoxContainer2" unique_id=1224118227]
+layout_mode = 2
+text = "Best: "
+label_settings = SubResource("LabelSettings_tefeu")
+
+[node name="BestScore" type="Label" parent="END_GAME/Panel/VBoxContainer/HBoxContainer2" unique_id=191172664]
+layout_mode = 2
+text = "00"
+label_settings = SubResource("LabelSettings_tefeu")
+
+[node name="Label" type="Label" parent="END_GAME/Panel" unique_id=893535165]
+layout_mode = 0
+offset_left = 468.0
+offset_top = 404.0
+offset_right = 712.0
+offset_bottom = 438.0
+text = "Press R to restart"
+label_settings = SubResource("LabelSettings_tbgi4")
+horizontal_alignment = 1
 
 [connection signal="area_entered" from="detector" to="obstacle_spawner" method="OnDetectorObstacleEntered"]
 [connection signal="area_exited" from="detector" to="obstacle_spawner" method="OnDetectorObstacleExited"]

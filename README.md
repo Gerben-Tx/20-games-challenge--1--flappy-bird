@@ -1,7 +1,8 @@
 # Flappy Game README
 This Godot project is part of the **20 Games Challenge**, a learning journey to master game development through recreating classic games in order of increasing complexity.
 
-> [!Warning] ⚠️ Learning Prototype
+> [!Warning]
+> **Learning Prototype**  
 > This game prioritizes learning over perfection. It's built for the "20 Games Challenge" and skips advanced best practices, optimizations, or production polish to focus on core mechanics and rapid iteration.
 
 ## Demo

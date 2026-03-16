@@ -26,8 +26,8 @@ public partial class ObstacleSpawner : Node {
 		
 		Obstacle obstacle = node2d as Obstacle;
 		Random rand = new();
-		obstacle.LowerY = rand.Next(250, 470);
-		obstacle.UpperY = rand.Next(350, 600) * -1;
+		obstacle.LowerY = rand.Next(190, 265);
+		obstacle.UpperY = rand.Next(190, 275) * -1;
 		// obstacle.LowerY = 400;
 		// obstacle.UpperY = -400;
 		

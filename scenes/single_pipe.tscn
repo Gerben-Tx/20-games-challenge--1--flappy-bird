@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://diew1kmjmbyq4"]
+
+[ext_resource type="Texture2D" uid="uid://r7xg1roy25r5" path="res://textures/bong.png" id="1_lhf8f"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_lhf8f"]
+points = PackedVector2Array(0, -0.504, -0.28, -0.49, -0.29999998, -0.44200003, -0.22999999, -0.42200002, -0.22999999, 0.112, -0.42999998, 0.14400001, -0.59999996, 0.238, -0.61, 0.358, -0.57, 0.44200003, -0.44, 0.504, 0.42999998, 0.504, 0.53, 0.446, 0.59, 0.354, 0.56, 0.23200001, 0.82, 0.172, 0.72999996, 0.094000004, 0.59, 0.05, 0.42999998, 0.15400001, 0.22, 0.106000006, 0.22, -0.43, 0.28, -0.44200003, 0.29, -0.48600003)
+
+[node name="lower" type="Node2D" unique_id=715456992]
+scale = Vector2(100, 500)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1295663320]
+position = Vector2(0.10000001, 0.0014374778)
+scale = Vector2(0.0031452205, 0.0014309878)
+texture = ExtResource("1_lhf8f")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1927764642]
+scale = Vector2(1, 0.99999994)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1079295231]
+shape = SubResource("ConvexPolygonShape2D_lhf8f")

@@ -4,9 +4,9 @@ using gameschallenge1FlappyBird.scripts;
 using Godot;
 
 public partial class Obstacle : Node2D {
-    [Export] public float UpperY = -300.0f;
-    [Export] public float LowerY = 300.0f;
-    [Export] private float _minSpaceBetween = 600.0f;
+    public float UpperY = -300.0f;
+    public float LowerY = 300.0f;
+    [Export] private float _minSpaceBetween = 300.0f;
     [Export] private float _speed = 300.0f;
 
     private Node2D _upper;

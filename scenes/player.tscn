@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dvf1wtuis2vui" path="res://scripts/Player.cs" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dq8j1i67ct8t" path="res://textures/flappy_bird.png" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://crbg5urk2pavp" path="res://textures/cloud.png" id="3_qhqgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
 radius = 17.0
@@ -27,5 +28,20 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D" unique_id=1325380361]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_g2els")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="RigidBody2D" unique_id=586485187]
+position = Vector2(34, 0)
+amount = 1
+texture = ExtResource("3_qhqgy")
+lifetime = 2.5
+explosiveness = 0.12
+randomness = 0.17
+lifetime_randomness = 0.09
+emission_shape = 1
+emission_sphere_radius = 8.0
+gravity = Vector2(-500, -100)
+linear_accel_min = -98.05
+linear_accel_max = -98.05
+scale_amount_max = 1.8
 
 [connection signal="area_entered" from="RigidBody2D/Area2D" to="." method="OnAreaEntered"]

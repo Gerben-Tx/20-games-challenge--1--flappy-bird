@@ -4,6 +4,11 @@ This Godot project is part of the **20 Games Challenge**, a learning journey to 
 > [!Warning] ⚠️ Learning Prototype
 > This game prioritizes learning over perfection. It's built for the "20 Games Challenge" and skips advanced best practices, optimizations, or production polish to focus on core mechanics and rapid iteration.
 
+## Demo
+https://github.com/user-attachments/assets/4191a4ab-8d47-4ae3-a23f-391446ccc026
+
+
+
 ## Challenge Details
 Documentation for this Flappy Bird-style game (and the full challenge) is available at: [https://20_games_challenge.gitlab.io/games/flappy/](https://20_games_challenge.gitlab.io/games/flappy/)
 

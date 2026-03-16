@@ -23,7 +23,6 @@ public partial class Player : Node
 		}
 		
 		if (Input.IsActionJustPressed("Jump")) {
-			Debug.WriteLine("PlayerMovement jump");
 			playerBody.ApplyForce(Vector2.Up * jumpForce);
 		}
 	}

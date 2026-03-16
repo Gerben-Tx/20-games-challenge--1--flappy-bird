@@ -6,11 +6,14 @@ using gameschallenge1FlappyBird.scripts;
 public partial class GameManager : Node {
 	public GameState GameState { get; private set; }
 	public static GameManager Instance { get; private set; }
+	public int Score { get; private set; } = 0;
+	public int BestScore { get; private set; } = 0;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		Instance = this;
-		GameState = GameState.Playing;
+		
+		StartGame();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,25 +22,36 @@ public partial class GameManager : Node {
 		if (GameState == GameState.End) {
 			if (Input.IsActionJustPressed("Restart")) {
 				GetTree().ReloadCurrentScene();
-				GameState = GameState.Playing;
+				
+				StartGame();
 			}
 		}
 	}
+
+	private void StartGame() {
+		Debug.WriteLine("StartGame");
+		
+		Score = 0;
+		GameState = GameState.Playing;
+	}
 	
 	public void EndGame() {
+		Debug.WriteLine("EndGame");
+		
+		// TODO: Replacing this with some sort of state machine would allow me to bind action to changing the game state
+		//  for example: when the gamestate ends, show the end screen
+		//  when the gamestate goes to playing, update the bestScore label once
+		//  etc...
 		GameState = GameState.End;
-		GetNode<Control>("/root/main/END_GAME").Visible = true;
+		
+		// Update best score
+		BestScore = Score > BestScore  ? Score : BestScore;
+		
+		((Hud)GetNode<Control>("/root/main/HUD")).ShowEndScreen();
 	}
 
 	public void IncreaseScore() {
-		// TODO: Better replacement for this is letting a HUD script register the Score label to the Game Manager
-		//  Like `GameManager.Instance.RegisterScoreLabel(_scoreLabel);`
-		Label scoreLabel = GetNode<Label>("/root/main/HUD/VBoxContainer/HBoxContainer/Score");
-		Debug.WriteLine(scoreLabel);
-		int score = int.Parse(scoreLabel.Text);
-		score += 1;
-		scoreLabel.Text = score.ToString();
-		
-		Debug.WriteLine("Increased Score: " + score);
+		Score += 1;
+		Debug.WriteLine("Increased Score: " + Score);
 	}
 }

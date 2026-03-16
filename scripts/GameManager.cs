@@ -8,10 +8,14 @@ public partial class GameManager : Node {
 	public static GameManager Instance { get; private set; }
 	public int Score { get; private set; } = 0;
 	public int BestScore { get; private set; } = 0;
+	private Hud _hud = null;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		Instance = this;
+		ProcessMode = ProcessModeEnum.Always; // Ignore pause, so we can handle inputs to unpause the game
+		
+		_hud = (Hud)GetNode<Control>("/root/main/HUD");
 		
 		StartGame();
 	}
@@ -25,7 +29,29 @@ public partial class GameManager : Node {
 				
 				StartGame();
 			}
+		} else if (GameState == GameState.Playing) {
+			if (Input.IsActionJustPressed("Pause")) {
+				PauseGame();
+			}
+		} else if (GameState == GameState.Paused) {
+			if (Input.IsActionJustPressed("Pause")) {
+				UnPauseGame();
+			}
 		}
+	}
+
+	private void UnPauseGame() {
+		_hud.HidePauseScreen();
+		GetTree().Paused = false;
+		
+		GameState = GameState.Playing;
+	}
+
+	private void PauseGame() {
+		GameState = GameState.Paused;
+		
+		GetTree().Paused = true;
+		_hud.ShowPauseScreen();
 	}
 
 	private void StartGame() {
@@ -47,7 +73,7 @@ public partial class GameManager : Node {
 		// Update best score
 		BestScore = Score > BestScore  ? Score : BestScore;
 		
-		((Hud)GetNode<Control>("/root/main/HUD")).ShowEndScreen();
+		_hud.ShowEndScreen();
 	}
 
 	public void IncreaseScore() {

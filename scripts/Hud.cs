@@ -9,6 +9,7 @@ public partial class Hud : Control
 	private Label _endScreenScoreLabel;
 	private Label _endScreenBestScoreLabel;
 	private Control _endScreen;
+	private Control _pauseScreen;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
@@ -19,6 +20,7 @@ public partial class Hud : Control
 		_endScreenScoreLabel = GetNode<Label>("/root/main/END_GAME/Panel/VBoxContainer/HBoxContainer/Score");
 		_endScreenBestScoreLabel = GetNode<Label>("/root/main/END_GAME/Panel/VBoxContainer/HBoxContainer2/BestScore");
 		_endScreen = GetNode<Control>("/root/main/END_GAME");
+		_pauseScreen = GetNode<Control>("/root/main/PAUSE");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,5 +36,13 @@ public partial class Hud : Control
 		_endScreenBestScoreLabel.Text = GameManager.Instance.BestScore.ToString();
 		
 		_endScreen.Visible = true;
+	}
+
+	public void ShowPauseScreen() {
+		_pauseScreen.Visible = true;
+	}
+	
+	public void HidePauseScreen() {
+		_pauseScreen.Visible = false;
 	}
 }

@@ -8,17 +8,26 @@ public partial class GameManager : Node {
 	public static GameManager Instance { get; private set; }
 	public int Score { get; private set; } = 0;
 	public int BestScore { get; private set; } = 0;
+	private AudioStream _lose;
+	private AudioStream _point;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		Instance = this;
 		ProcessMode = ProcessModeEnum.Always; // Ignore pause, so we can handle inputs to unpause the game
 		
+		_lose = GD.Load<AudioStream>("res://sounds/lose.mp3");
+		_point = GD.Load<AudioStream>("res://sounds/point.mp3");
+		
 		StartGame();
 	}
 
 	private Hud FindHud() {
 		return (Hud)GetNode<Control>("/root/main/HUD");
+	}
+
+	private AudioStreamPlayer GetAudioStreamPlayer() {
+		return GetNode<AudioStreamPlayer>("/root/main/AudioStreamPlayer");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -73,12 +82,17 @@ public partial class GameManager : Node {
 		
 		// Update best score
 		BestScore = Score > BestScore  ? Score : BestScore;
+
+		GetAudioStreamPlayer().Stream = _lose;
+		GetAudioStreamPlayer().Play();
 		
 		FindHud().ShowEndScreen();
 	}
 
 	public void IncreaseScore() {
 		Score += 1;
+		GetAudioStreamPlayer().Stream = _point;
+		GetAudioStreamPlayer().Play();
 		Debug.WriteLine("Increased Score: " + Score);
 	}
 }
